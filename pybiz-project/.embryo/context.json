@@ -1,0 +1,14 @@
+{
+  "embryo": [
+    {
+      "embryo": {
+        "action": "hatch",
+        "destination": "/Users/jeffdoss/jump-ship/code/pybiz/pybiz/embryos/pybiz-project",
+        "name": "embryo",
+        "timestamp": 1537550626
+      },
+      "name": "uwsgi",
+      "schema_fields": []
+    }
+  ]
+}

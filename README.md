@@ -1,12 +1,13 @@
 # Gigaquads Embryos
-All of the embryos that we use here at Gigaquads
+A collection of the embryos that we use here at Gigaquads
 
-Embryo | Status | Purpose
+## The embryos
+Name | Purpose | Status
 -|-|-
-[docker-env](docker-env) | Refactor | Docker compose environment
-[dockerfile](dockerfile) | Refactor | Dockerfile
-[embryo](embryo) | Active | Create new embryos
-[git-project](git-project) | Active | Bootstrap your project with git-based project essentials
-[pybiz-project](pybiz-project) | Active | Pybiz project
-[python-project](python-project) | Active | Basic necessities for a python project
-[react-project](react-project) | Refactor | React project
+[docker-env](docker-env) | Docker compose environment | Refactor
+[dockerfile](dockerfile) | Dockerfile | Refactor
+[embryo](embryo) | Create new embryos | Active
+[git-project](git-project) | Bootstrap your project with git-based project essentials | Active
+[pybiz-project](pybiz-project) | [Pybiz](/gigaquads/pybiz) project | Active
+[python-project](python-project) | Basic necessities for to get yourself a python project | Active / Upgrade
+[react-project](react-project) | React project | Refactor

@@ -14,11 +14,11 @@ This embryo contains the following sub-embryos:
 ## Usage
 Sub-embryo | Command
 -----|------
-api | `embryo create pybiz-project/api --api.name my-lame-api`
-base | `embryo create pybiz-project/base --project.name my-lame-project`
-biz | `embryo create pybiz-project/biz --biz.name my-lame-biz`
+api | `embryo hatch pybiz-project/api --api.name my-lame-api`
+base | `embryo hatch pybiz-project/base --project.name my-lame-project`
+biz | `embryo hatch pybiz-project/biz --biz.name my-lame-biz`
 cli | `embryo hatch python-project/cli`
-dao | `embryo create pybiz-project/dao --dao.name my-lame-dao --dao.type yaml`
-resource | `embryo create pybiz-project/resource --resource.name my-lame-resource`
-svc | `embryo create pytbiz-project/svc`
-uwsgi | `embryo create pybiz-project/uwsgi`
+dao | `embryo hatch pybiz-project/dao --dao.name my-lame-dao --dao.type yaml`
+resource | `embryo hatch pybiz-project/resource --resource.name my-lame-resource`
+svc | `embryo hatch pytbiz-project/svc`
+uwsgi | `embryo hatch pybiz-project/uwsgi`

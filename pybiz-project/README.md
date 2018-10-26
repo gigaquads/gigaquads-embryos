@@ -14,7 +14,7 @@ This embryo contains the following sub-embryos:
 ## Usage
 Sub-embryo | Command
 -----|------
-api | `embryo create pybiz-project/api --api.name my-lame-api
+api | `embryo create pybiz-project/api --api.name my-lame-api`
 base | `embryo create pybiz-project/base --project.name my-lame-project`
 biz | `embryo create pybiz-project/biz --biz.name my-lame-biz`
 cli | `embryo hatch python-project/cli`

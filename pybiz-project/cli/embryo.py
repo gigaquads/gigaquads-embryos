@@ -2,7 +2,7 @@ from appyratus.validation import fields
 from embryo import Embryo
 
 
-class PythonProjectCliEmbryo(Embryo):
+class PybizProjectCliEmbryo(Embryo):
     """
     An embryo for Cli
     """

@@ -48,6 +48,7 @@ class SetupEmbryo(Embryo):
         dependency_links = fields.List(fields.Str(), allow_none=True)
         packages = fields.Str(allow_none=True)
         install_requires = fields.Str(allow_none=True)
+        zip_safe = fields.Bool(allow_none=True)
 
     def pre_create(self, context):
         if 'classifiers' in context:

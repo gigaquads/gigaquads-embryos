@@ -1,8 +1,9 @@
 from copy import deepcopy
 import os
 
-from appyratus.validation import fields
 from appyratus.io import Ini
+from appyratus.util import TextTransform
+from appyratus.validation import fields
 from embryo import Embryo
 
 PROJECT_CLASSIFIERS = {
@@ -33,7 +34,7 @@ class SetupEmbryo(Embryo):
         # Context Schema
         The respective Setup schema
         """
-        name = fields.Str(allow_none=True)
+        name = fields.Str(allow_none=True, transform=TextTransform.snake)
         description = fields.Str(allow_none=True)
         long_description = fields.Str(allow_none=True)
         version = fields.Anything(allow_none=True)
@@ -90,6 +91,7 @@ class SetupEmbryo(Embryo):
         # we will adjust the list data so that it is represented in any of the
         # expected formats.
         list_format = 'dangling'
+
         def clean_value(value):
             if isinstance(value, list):
                 if list_format == 'dangling':

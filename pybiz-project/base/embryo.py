@@ -2,9 +2,9 @@ from appyratus.validation import fields
 from embryo import Embryo
 
 
-class BaseEmbryo(Embryo):
+class PybizProjectBaseEmbryo(Embryo):
     """
-    # Base Embryo
+    # Pybiz Project Base Embryo
     """
 
     class context_schema(Embryo.Schema):
@@ -17,5 +17,5 @@ class BaseEmbryo(Embryo):
             * `name`: TODO
         """
         project = fields.Object({
-            'name': fields.Str(),
+            'name': fields.Str(allow_none=False),
         })

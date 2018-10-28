@@ -1,4 +1,4 @@
 ---
 - bin/:
-  - {{ name|dash }}: cli-entrypoint()
+  - {{ project.context.project.name|dash }}: cli-entrypoint()
 ...

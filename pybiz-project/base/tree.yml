@@ -7,5 +7,4 @@
   - api/:
     - __init__.py
 - manifest.yml
-
 ...

@@ -1,5 +1,7 @@
-from copy import deepcopy
 import os
+import re
+
+from copy import deepcopy
 
 from appyratus.io import Ini
 from appyratus.util import TextTransform
@@ -125,7 +127,9 @@ class SetupEmbryo(Embryo):
             return
         requirements = []
         dependency_links = []
-        for line in requirements_text:
+        for line in requirements_text.split("\n"):
+            if not line:
+                continue
             if line.startswith('-e'):
                 # we're looking at a github repo dependency, so
                 # install from a github tarball.
@@ -141,9 +145,9 @@ class SetupEmbryo(Embryo):
             else:
                 requirements.append(line.strip().replace('-', '_'))
         if requirements:
-            self.context['requirements'] = requirements
+            context['install_requires'] = requirements
         if dependency_links:
-            self.context['dependency_links'] = dependency_links
+            context['dependency_links'] = dependency_links
 
     def load_scripts(self, context):
         """

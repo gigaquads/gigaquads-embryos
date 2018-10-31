@@ -21,7 +21,10 @@ class GitProjectEmbryo(Embryo):
 
         """
         remote = fields.Object(
-            dict(name=fields.Str(default='origin'), path=fields.Str())
+            dict(
+                name=fields.Str(default='origin'),
+                path=fields.Str(),
+            )
         )
 
     def on_create(self, context):

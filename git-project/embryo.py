@@ -1,6 +1,6 @@
 import git
 
-from appyratus.validation import fields
+from appyratus.schema import fields
 from embryo import Embryo, shout
 
 
@@ -20,11 +20,11 @@ class GitProjectEmbryo(Embryo):
 
 
         """
-        remote = fields.Object(
-            dict(
-                name=fields.Str(default='origin'),
-                path=fields.Str(),
-            )
+        remote = fields.Nested(
+            {
+                'name': fields.String(default='origin'),
+                'path': fields.String(),
+            }
         )
 
     def on_create(self, context):

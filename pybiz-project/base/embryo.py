@@ -1,4 +1,4 @@
-from appyratus.validation import fields
+from appyratus.schema import fields
 from embryo import Embryo
 
 
@@ -16,6 +16,6 @@ class PybizProjectBaseEmbryo(Embryo):
         * `project`: TODO
             * `name`: TODO
         """
-        project = fields.Object({
-            'name': fields.Str(allow_none=False),
+        project = fields.Nested({
+            'name': fields.String(nullable=False),
         })

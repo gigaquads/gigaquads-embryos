@@ -1,5 +1,5 @@
 from appyratus.time import utc_now
-from appyratus.validation import fields
+from appyratus.schema import fields
 from embryo import Embryo
 
 
@@ -13,7 +13,7 @@ class LicenseEmbryo(Embryo):
         # Context Schema
         The respective License schema
         """
-        author = fields.Str()
-        year = fields.Str(
-            allow_none=True, default=lambda: utc_now().strftime('%Y')
+        author = fields.String()
+        year = fields.String(
+            nullable=True, default=lambda: utc_now().strftime('%Y')
         )

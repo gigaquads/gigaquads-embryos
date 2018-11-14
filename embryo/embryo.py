@@ -1,4 +1,4 @@
-from appyratus.validation import fields
+from appyratus.schema import fields
 from embryo import Embryo
 
 
@@ -17,7 +17,7 @@ class EmbryoEmbryo(Embryo):
 
 
         """
-        name = fields.Str()
+        name = fields.String()
         schema_fields = fields.List(nested=fields.Dict(), default=[])
 
     def pre_create(self, context):

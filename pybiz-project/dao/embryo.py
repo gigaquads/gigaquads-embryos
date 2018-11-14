@@ -1,4 +1,4 @@
-from appyratus.validation import fields
+from appyratus.schema import fields
 from embryo import Embryo, Relationship
 
 
@@ -22,10 +22,10 @@ class DaoEmbryo(Embryo):
             * `type`: TODO
             * `fields`: TODO
         """
-        dao = fields.Object(
-            dict(
-                name=fields.Str(),
-                type=fields.Str(allow_none=True),
-                fields=fields.List(nested=fields.Dict())
-            )
+        dao = fields.Nested(
+            {
+                'name': fields.Str(),
+                'type': fields.Str(nullable=True),
+                'fields': fields.List(fields.Dict())
+            }
         )

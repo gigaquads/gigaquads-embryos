@@ -5,7 +5,7 @@ from copy import deepcopy
 
 from appyratus.io import Ini
 from appyratus.util import TextTransform
-from appyratus.validation import fields
+from appyratus.schema import fields
 from embryo import Embryo
 
 PROJECT_CLASSIFIERS = {
@@ -36,22 +36,22 @@ class SetupEmbryo(Embryo):
         # Context Schema
         The respective Setup schema
         """
-        name = fields.Str(allow_none=True, transform=TextTransform.snake)
-        description = fields.Str(allow_none=True)
-        long_description = fields.Str(allow_none=True)
-        version = fields.Anything(allow_none=True)
-        tagline = fields.Str(allow_none=True)
-        author = fields.Str(allow_none=True)
-        author_email = fields.Str(allow_none=True)
-        url = fields.Str(allow_none=True)
-        license = fields.Str(allow_none=True)
-        keywords = fields.List(fields.Str(), allow_none=True)
-        classifiers = fields.List(fields.Str(), allow_none=True)
-        scripts = fields.List(fields.Str(), allow_none=True)
-        dependency_links = fields.List(fields.Str(), allow_none=True)
-        packages = fields.Str(allow_none=True)
-        install_requires = fields.Str(allow_none=True)
-        zip_safe = fields.Bool(allow_none=True)
+        name = fields.String(nullable=True, transform=TextTransform.snake)
+        description = fields.String(nullable=True)
+        long_description = fields.String(nullable=True)
+        version = fields.Anything(nullable=True)
+        tagline = fields.String(nullable=True)
+        author = fields.String(nullable=True)
+        author_email = fields.String(nullable=True)
+        url = fields.String(nullable=True)
+        license = fields.String(nullable=True)
+        keywords = fields.List(fields.String(), nullable=True)
+        classifiers = fields.List(fields.String(), nullable=True)
+        scripts = fields.List(fields.String(), nullable=True)
+        dependency_links = fields.List(fields.String(), nullable=True)
+        packages = fields.String(nullable=True)
+        install_requires = fields.String(nullable=True)
+        zip_safe = fields.Bool(nullable=True)
 
     def pre_create(self, context):
         if 'classifiers' in context:
@@ -133,6 +133,7 @@ class SetupEmbryo(Embryo):
             if line.startswith('-e'):
                 # we're looking at a github repo dependency, so
                 # install from a github tarball.
+                # TODO other places besides github
                 match = re.search(
                     r'(https://github.+?)#egg=(.+)$', line.strip()
                 )
@@ -140,7 +141,7 @@ class SetupEmbryo(Embryo):
                 if url.endswith('.git'):
                     url = url[:-4]
                 tarball_url = url.rstrip('/') + '/tarball/master#egg=' + egg
-                requirements.append(egg)
+                requirements.append(egg.strip().replace('-', '_'))
                 dependency_links.append(tarball_url)
             else:
                 requirements.append(line.strip().replace('-', '_'))

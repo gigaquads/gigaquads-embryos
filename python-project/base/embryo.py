@@ -1,4 +1,4 @@
-from appyratus.validation import schema, fields
+from appyratus.schema import fields
 from embryo import Embryo
 
 
@@ -7,7 +7,7 @@ class PythonProjectBaseEmbryo(Embryo):
     An embryo for Base
     """
 
-    class context_schema(schema.Schema):
+    class context_schema(Embryo.Schema):
         """
         The respective Base schema
         - `name`, the name of the python project
@@ -15,7 +15,7 @@ class PythonProjectBaseEmbryo(Embryo):
         - `version`, a version identifying this project
         - `tagline` a powerful tag line
         """
-        name = fields.Str()
-        description = fields.Str(allow_none=True, default='')
-        version = fields.Anything(allow_none=True, default='0b0')
-        tagline = fields.Str(allow_none=True)
+        name = fields.String()
+        description = fields.String(nullable=True, default='')
+        version = fields.String(nullable=True, default='0b0')
+        tagline = fields.String(nullable=True)

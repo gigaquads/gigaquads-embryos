@@ -1,4 +1,4 @@
-from appyratus.validation import fields
+from appyratus.schema import fields
 from embryo import Embryo, Relationship
 
 
@@ -23,7 +23,6 @@ class BizEmbryo(Embryo):
           - `name`: TODO
           - `type`: TODO
         """
-        biz = fields.Object(
-            dict(name=fields.Str(), fields=fields.List(nested=fields.Dict()))
-        )
+        biz = fields.Nested(
+                {'name': fields.String(), 'fields': fields.List(fields.Dict())})
         project = fields.Dict()

@@ -1,4 +1,4 @@
-from appyratus.validation import fields
+from appyratus.schema import fields
 from embryo import Embryo, Relationship
 
 

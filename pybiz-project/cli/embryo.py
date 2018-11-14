@@ -1,7 +1,7 @@
 import os
 import stat
 
-from appyratus.validation import fields
+from appyratus.schema import fields
 from appyratus.util import TextTransform
 from embryo import Embryo, Relationship
 

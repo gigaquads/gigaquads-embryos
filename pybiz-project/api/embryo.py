@@ -1,4 +1,4 @@
-from appyratus.validation import fields
+from appyratus.schema import fields
 from embryo import Embryo, Relationship
 
 
@@ -20,4 +20,4 @@ class ApiEmbryo(Embryo):
         * `api`:
             * `name`: TODO
         """
-        api = fields.Object(dict(name=fields.Str()))
+        api = fields.Nested({'name': fields.String()})

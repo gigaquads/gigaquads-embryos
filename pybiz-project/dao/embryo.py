@@ -24,8 +24,8 @@ class DaoEmbryo(Embryo):
         """
         dao = fields.Nested(
             {
-                'name': fields.Str(),
-                'type': fields.Str(nullable=True),
+                'name': fields.String(),
+                'type': fields.String(nullable=True),
                 'fields': fields.List(fields.Dict())
             }
         )

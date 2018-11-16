@@ -1,5 +1,7 @@
 from appyratus.test import mark, BaseTests
 
+from {{ project.context.project.name|snake }}.biz.{{ biz.name|snake }} import {{ biz.name|camel }}
+
 
 class Test{{ biz.name|camel }}(BaseTests):
     """

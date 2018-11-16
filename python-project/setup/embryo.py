@@ -36,10 +36,10 @@ class SetupEmbryo(Embryo):
         # Context Schema
         The respective Setup schema
         """
-        name = fields.String(nullable=True, transform=TextTransform.snake)
+        name = fields.String(nullable=True, post_process=TextTransform.snake)
         description = fields.String(nullable=True)
         long_description = fields.String(nullable=True)
-        version = fields.Anything(nullable=True)
+        version = fields.String(nullable=True)
         tagline = fields.String(nullable=True)
         author = fields.String(nullable=True)
         author_email = fields.String(nullable=True)

@@ -6,13 +6,16 @@ from os.path import join, dirname
 from appyratus.cli import safe_main
 
 from {{ project.context.project.name|snake }}.api import cli
+from {{ project.context.project.name|snake }}.env import {{ project.context.project.name|camel }}Environment
+
+env = {{ project.context.project.name|camel }}Environment()
 
 
 def main():
     """
     Main execution for {{ project.context.project.name|title }}
     """
-    cli.bootstrap(manifest_filepath=join(dirname(__file__), '../manifest.yml'))
+    cli.bootstrap(manifest_filepath=env.manifest_filepath)
     cli.start()
 
 

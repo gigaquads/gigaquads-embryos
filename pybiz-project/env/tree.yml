@@ -1,0 +1,5 @@
+---
+- .env: env()
+- {{ project.context.project.name|snake }}/:
+  - env.py
+...

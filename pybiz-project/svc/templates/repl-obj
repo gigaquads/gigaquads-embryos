@@ -1,5 +1,5 @@
-from pybiz.api.repl import ReplFunctionRegistry
+from pybiz.api.repl import ReplRegistry
 
 
-class {{ project.context.project.name|camel }}ReplService(ReplFunctionRegistry):
+class {{ project.context.project.name|camel }}ReplService(ReplRegistry):
     pass

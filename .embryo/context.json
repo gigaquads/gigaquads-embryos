@@ -1,4 +1,16 @@
 {
+  "embryo": [
+    {
+      "embryo": {
+        "action": "hatch",
+        "destination": "/Users/jeff/code/gigaquads-embryos",
+        "name": "embryo",
+        "timestamp": 1542415027
+      },
+      "name": "docker-project",
+      "schema_fields": []
+    }
+  ],
   "git-project": [
     {
       "embryo": {

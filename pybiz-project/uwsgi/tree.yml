@@ -2,5 +2,6 @@
 - uwsgi/:
   - entrypoint.py
   - dev.ini
+  - test.ini
   - prod.ini
 ...

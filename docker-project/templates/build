@@ -1,0 +1,5 @@
+fetch-repo {{ project.source or 'github' }} {{ project.org }} \
+  {{ project.name }} {{ project.branch or 'master' }} \
+  --dest /src/{{ project.name|dash }} \
+  && cd /src/{{ project.name }} \
+  && setup-python-project

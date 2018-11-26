@@ -12,4 +12,4 @@ class DockerProjectEmbryo(Embryo):
         # Context Schema
         The respective Docker Project schema
         """
-        pass
+        is_service = fields.Bool(default=False)

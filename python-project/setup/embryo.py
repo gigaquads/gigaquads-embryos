@@ -31,12 +31,14 @@ class SetupEmbryo(Embryo):
     # Setup Embryo
     """
 
+    project = Relationship(name='python-project/base', index=0)
+
     class context_schema(Embryo.Schema):
         """
         # Context Schema
         The respective Setup schema
         """
-        name = fields.String(nullable=True, post_process=TextTransform.snake)
+        project = fields.Dict()
         description = fields.String(nullable=True)
         long_description = fields.String(nullable=True)
         version = fields.String(nullable=True)

@@ -15,7 +15,9 @@ class PythonProjectBaseEmbryo(Embryo):
         - `version`, a version identifying this project
         - `tagline` a powerful tag line
         """
-        name = fields.String()
+        project = fields.Nested({
+            'name': fields.String(nullable=False),
+        })
         description = fields.String(nullable=True, default='')
         version = fields.String(nullable=True, default='0b0')
         tagline = fields.String(nullable=True)

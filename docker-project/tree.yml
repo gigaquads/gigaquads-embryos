@@ -2,4 +2,6 @@
 - docker_src/:
   - Dockerfile
   - scripts/:
+    - entrypoint
+    - build
 ...

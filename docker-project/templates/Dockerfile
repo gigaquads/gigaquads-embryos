@@ -1,7 +1,10 @@
-{% if image %}
-FROM {{ image }}
-{% endif %}
+FROM gigaquads-base:latest
 
-{% if scripts %}
+ARG FREEZE=false
+
 COPY scripts /scripts
-{% endif %}
+RUN chmod +x /scripts/*
+
+RUN /scripts/build
+
+CMD ["/scripts/entrypoint"]

@@ -6,7 +6,7 @@ from copy import deepcopy
 from appyratus.io import Ini
 from appyratus.util import TextTransform
 from appyratus.schema import fields
-from embryo import Embryo
+from embryo import Embryo, Relationship
 
 PROJECT_CLASSIFIERS = {
     'python3': 'Programming Language :: Python :: 3',
@@ -55,6 +55,10 @@ class SetupEmbryo(Embryo):
         install_requires = fields.String(nullable=True)
         zip_safe = fields.Bool(nullable=True)
 
+        # options that coerce a behavior
+        refresh_scripts = fields.Bool(nullable=True, default=False)
+        find_packages = fields.Bool(nullable=True, default=False)
+
     def pre_create(self, context):
         if 'classifiers' in context:
             if not isinstance(context['classifiers'], list):
@@ -67,12 +71,13 @@ class SetupEmbryo(Embryo):
             description_files = ['README.md']
             context['long_description'
                     ] = 'file: {}'.format(','.join(description_files))
+
         self.load_classifiers(context)
         # scripts
-        if 'scripts' not in context:
+        if 'scripts' not in context or context['refresh_scripts']:
             scripts = self.load_scripts(context)
         # packages
-        if 'packages' not in context:
+        if 'packages' not in context or context['find_packages']:
             # this is the equivalent of running `find_packages()`
             context['packages'] = 'find:'
         self.load_requirements(context)
@@ -172,7 +177,7 @@ class SetupEmbryo(Embryo):
         """
         Load classifiers providing a list of keys that exist in PROJECT_CLASSIFIERS
         """
-        if 'classifiers' not in context:
+        if 'classifiers' not in context or not context['classifiers']:
             return
         classifiers = []
         for k in context['classifiers']:

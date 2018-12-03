@@ -11,9 +11,10 @@ so dense that you went mad in the process.
 - Testing https://test.pypi.org/
 - Classifying https://pypi.org/classifiers/
 - Key projects https://packaging.python.org/key_projects/
+- Using https://pip.pypa.io/en/stable/reference/pip_install
 
 # Using PyPi
-The following is a loose guide to pushing your project up to PyPi once the setup has been constructed
+The following is a loose guide to pushing your project up to PyPi once the setup has been constructed.  This has not been tested and will eventually be baked into an embryo.
 
 ## Requirements
 ```sh

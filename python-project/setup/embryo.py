@@ -65,6 +65,8 @@ class SetupEmbryo(Embryo):
                 context['classifiers'] = [context['classifiers']]
 
     def on_create(self, context):
+        #if 'name' not in context or context['name'] is None and context['project'] is not None:
+        #    context['name'] = context['project']['name']
         #https://setuptools.readthedocs.io/en/latest/setuptools.html#configuring-setup-using-setup-cfg-files
         # look for readme for long description
         if 'long_description' not in context:

@@ -3,8 +3,7 @@ import re
 
 from copy import deepcopy
 
-from appyratus.io import Ini
-from appyratus.util import TextTransform
+from appyratus.files import Ini
 from appyratus.schema import fields
 from embryo import Embryo, Relationship
 
@@ -16,15 +15,6 @@ PROJECT_CLASSIFIERS = {
 """
 Project classifier mappings
 """
-
-
-def as_list(value):
-    if not value:
-        return []
-    if not isinstance(value, list):
-        value = [value]
-    return value
-
 
 class SetupEmbryo(Embryo):
     """

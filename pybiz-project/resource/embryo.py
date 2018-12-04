@@ -1,5 +1,5 @@
 from appyratus.schema import fields
-from appyratus.util import TextTransform
+from appyratus.utils import StringUtils
 from embryo import Embryo, Relationship
 
 
@@ -33,8 +33,8 @@ class ResourceEmbryo(Embryo):
     def on_create(self, context, *args, **kwargs):
         manifest = self.fs['/manifest.yml'][0]
         bindings = manifest.setdefault('bindings', [])
-        biz_name = TextTransform.camel(context['biz']['name'])
-        dao_name = TextTransform.camel('{}Dao'.format(context['dao']['name']))
+        biz_name = StringUtils.camel(context['biz']['name'])
+        dao_name = StringUtils.camel('{}Dao'.format(context['dao']['name']))
         if biz_name not in {b['biz'] for b in bindings}:
             binding = {'biz': biz_name, 'dao': dao_name}
             bindings.append(binding)

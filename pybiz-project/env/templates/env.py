@@ -1,4 +1,4 @@
-from appyratus.io import Environment
+from appyratus.env import Environment
 from appyratus.schema import fields
 
 class {{ project.context.project.name|camel }}Environment(Environment):

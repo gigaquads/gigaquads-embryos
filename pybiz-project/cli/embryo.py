@@ -2,7 +2,7 @@ import os
 import stat
 
 from appyratus.schema import fields
-from appyratus.util import TextTransform
+from appyratus.utils import StringUtils
 from embryo import Embryo, Relationship
 
 
@@ -25,7 +25,7 @@ class PybizProjectCliEmbryo(Embryo):
         """
         cli_path = os.path.join(
             self.fs._root, 'bin',
-            TextTransform.
+            StringUtils.
             dash(self.related['project'].context['project']['name'])
         )
         st = os.stat(cli_path)

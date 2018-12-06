@@ -5,6 +5,7 @@ from copy import deepcopy
 
 from appyratus.files import Ini
 from appyratus.schema import fields
+from appyratus.utils import StringUtils
 from embryo import Embryo, Relationship
 
 PROJECT_CLASSIFIERS = {
@@ -15,6 +16,7 @@ PROJECT_CLASSIFIERS = {
 """
 Project classifier mappings
 """
+
 
 class SetupEmbryo(Embryo):
     """
@@ -29,6 +31,8 @@ class SetupEmbryo(Embryo):
         The respective Setup schema
         """
         project = fields.Dict()
+        # relevant setup fields
+        name = fields.String(nullable=True)
         description = fields.String(nullable=True)
         long_description = fields.String(nullable=True)
         version = fields.String(nullable=True)
@@ -55,14 +59,17 @@ class SetupEmbryo(Embryo):
                 context['classifiers'] = [context['classifiers']]
 
     def on_create(self, context):
-        #if 'name' not in context or context['name'] is None and context['project'] is not None:
-        #    context['name'] = context['project']['name']
         #https://setuptools.readthedocs.io/en/latest/setuptools.html#configuring-setup-using-setup-cfg-files
+        name = context.get('name')
+        if not name:
+            name = self.related['project'].context['project']['name']
+        context['name'] = StringUtils.snake(name)
         # look for readme for long description
         if 'long_description' not in context:
             description_files = ['README.md']
-            context['long_description'
-                    ] = 'file: {}'.format(','.join(description_files))
+            context['long_description'] = 'file: {}'.format(
+                ','.join(description_files)
+            )
 
         self.load_classifiers(context)
         # scripts
@@ -79,8 +86,9 @@ class SetupEmbryo(Embryo):
                 'name', 'description', 'long_description', 'version', 'author',
                 'author_email', 'license', 'classifiers'
             ],
-            'options':
-            ['scripts', 'dependency_links', 'packages', 'install_requires']
+            'options': [
+                'scripts', 'dependency_links', 'packages', 'install_requires'
+            ]
         }
         # where the constructed setup data will go. to ensure that existing
         # data does not get overridden by setup values not provided, copy the

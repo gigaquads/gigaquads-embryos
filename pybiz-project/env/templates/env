@@ -1,1 +1,2 @@
-{{ project.context.project.name|snake|upper }}_MANIFEST_FILEPATH=/path/to
+{{ project.context.project.name|snake|upper }}_DATA_PATH=/path/to/data
+{{ project.context.project.name|snake|upper }}_MANIFEST_FILEPATH=/path/to/manifest.yml

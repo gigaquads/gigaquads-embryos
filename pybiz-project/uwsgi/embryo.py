@@ -6,7 +6,7 @@ class UwsgiEmbryo(Embryo):
     """
     # Uwsgi Embryo
     """
-    project = Relationship(name='pybiz-project/base', index=0)
+    project = Relationship(name='python-project/base', index=0)
 
     class context_schema(Embryo.Schema):
         """

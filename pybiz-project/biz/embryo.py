@@ -9,8 +9,7 @@ class BizEmbryo(Embryo):
     ## Relationships
     - `project`: TODO
     """
-
-    project = Relationship(name='pybiz-project/base', index=0)
+    project = Relationship(name='python-project/base', index=0)
 
     class context_schema(Embryo.Schema):
         """
@@ -24,5 +23,9 @@ class BizEmbryo(Embryo):
           - `type`: TODO
         """
         biz = fields.Nested(
-                {'name': fields.String(), 'fields': fields.List(fields.Dict())})
+            {
+                'name': fields.String(),
+                'fields': fields.List(fields.Dict())
+            }
+        )
         project = fields.Dict()

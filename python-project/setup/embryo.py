@@ -1,6 +1,5 @@
 import os
 import re
-
 from copy import deepcopy
 
 from appyratus.files import Ini

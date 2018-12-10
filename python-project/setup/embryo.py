@@ -62,6 +62,8 @@ class SetupEmbryo(Embryo):
         #https://setuptools.readthedocs.io/en/latest/setuptools.html#configuring-setup-using-setup-cfg-files
         name = context.get('name')
         if not name:
+            # XXX self.related is not available when running setup as a nested
+            # embryo.  see the related `full` embryo for implementation 
             name = self.related['project'].context['project']['name']
         context['name'] = StringUtils.snake(name)
         # look for readme for long description

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "GigaQuads.fullname" . }}
+  labels:
+    app: {{ template "GigaQuads.name" . }}
+    chart: {{ template "GigaQuads.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ template "GigaQuads.name" . }}
+    release: {{ .Release.Name }}

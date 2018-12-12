@@ -1,2 +1,12 @@
 ---
+- README.md
+- Chart.yaml
+- values.yaml
+- .helmignore
+- templates/:
+  - NOTES.txt
+  - _helpers.tpl
+  - deployment.yaml
+  - ingress.yaml
+  - service.yaml
 ...

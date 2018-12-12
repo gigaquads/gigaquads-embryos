@@ -2,9 +2,9 @@ from appyratus.schema import fields
 from embryo import Embryo
 
 
-class ChartEmbryo(Embryo):
+class HelmChartEmbryo(Embryo):
     """
-    # Chart Embryo
+    # Helm Chart Embryo
     """
 
     class context_schema(Embryo.Schema):

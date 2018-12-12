@@ -10,6 +10,6 @@ class HelmChartEmbryo(Embryo):
     class context_schema(Embryo.Schema):
         """
         # Context Schema
-        The respective Chart schema
+        The respective Helm Chart schema
         """
         pass

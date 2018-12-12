@@ -3,7 +3,7 @@
 - Chart.yaml
 - values.yaml
 - .helmignore
-- templates/:
+- "templates/":
   - NOTES.txt
   - _helpers.tpl
   - deployment.yaml

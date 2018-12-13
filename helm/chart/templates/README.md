@@ -1,11 +1,11 @@
-# {{ name }}
+# {{ chart.name }}
 {{ description }}
 
 
 ## TL;DR;
 
 ```console
-$ helm install {{ name|dash }}
+$ helm install {{ chart.name|dash }}
 ```
 
 ## Installing the Chart
@@ -13,7 +13,7 @@ $ helm install {{ name|dash }}
 To install the chart with the release name `my-lame-release`:
 
 ```console
-$ helm install --name my-lame-release stable/{{ name| dash }}
+$ helm install --name my-lame-release stable/{{ chart.name| dash }}
 ```
 
 ## Uninstalling the Chart

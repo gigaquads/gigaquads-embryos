@@ -2,6 +2,7 @@
 - {{ name|dash }}/:
   - context.yml
   - embryo.py
+  - README.md
   - templates/:
   - tree.yml
 ...

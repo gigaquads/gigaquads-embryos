@@ -2,15 +2,15 @@ from appyratus.schema import fields
 from embryo import Embryo
 
 
-class {{ name|camel }}Embryo(Embryo):
+class {{ embryo.name|camel }}Embryo(Embryo):
     """
-    # {{name|title }} Embryo
+    # {{embryo.name|title }} Embryo
     """
 
     class context_schema(Embryo.Schema):
         """
         # Context Schema
-        The respective {{ name|title }} schema
+        The respective {{ embryo.name|title }} schema
 {% if schema_fields %}
         
         ## Fields

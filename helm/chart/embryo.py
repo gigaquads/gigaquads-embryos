@@ -12,4 +12,6 @@ class HelmChartEmbryo(Embryo):
         # Context Schema
         The respective Helm Chart schema
         """
-        pass
+        chart = fields.Nested({
+            'name': fields.String()
+        })

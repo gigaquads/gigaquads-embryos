@@ -13,7 +13,7 @@ def main():
     """
     Main execution for {{ project.context.project.name|title }}
     """
-    cli.bootstrap(manifest_filepath=env.manifest_filepath)
+    cli.manifest.load(path=env.manifest_filepath).process()
     cli.start()
 
 

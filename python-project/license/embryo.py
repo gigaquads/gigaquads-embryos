@@ -1,4 +1,4 @@
-from appyratus.time import utc_now
+from appyratus.utils import TimeUtils
 from appyratus.schema import fields
 from embryo import Embryo
 
@@ -15,5 +15,5 @@ class LicenseEmbryo(Embryo):
         """
         author = fields.String()
         year = fields.String(
-            nullable=True, default=lambda: utc_now().strftime('%Y')
+            nullable=True, default=lambda: TimeUtils.utc_now().strftime('%Y')
         )

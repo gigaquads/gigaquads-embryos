@@ -1,4 +1,4 @@
-# {{ embryo.name|title }}
-Welcome to the **{{ embryo.name }}** embryo
+# {{ name|title }}
+Welcome to the **{{ name }}** embryo
 
 # Usage

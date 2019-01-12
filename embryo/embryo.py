@@ -20,7 +20,7 @@ class EmbryoEmbryo(Embryo):
 
 
         """
-        name = fields.String()
+        name = fields.String(nullable=False)
         schema_fields = fields.List(nested=fields.Dict(), default=[])
         origin_path = fields.FilePath(default=lambda: '')
 
@@ -31,6 +31,8 @@ class EmbryoEmbryo(Embryo):
         And a dictionary, a presumed schema field structure, will be
         transformed to a list with itself being a member.
         """
+        self._new_tree = None
+        self._new_files = None
         schema_fields = context.get('schema_fields')
         if isinstance(schema_fields, str):
             schema_fields = dict(name=schema_fields, type='Anything')

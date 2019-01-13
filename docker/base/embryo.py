@@ -37,7 +37,7 @@ class DockerBaseEmbryo(Embryo):
         expose = fields.String(nullable=True)
 
     def pre_create(self, data):
-        build_repo_name = data.get('build', {}).get('repo', {}).get('name')
         project = self.related['project']
-        if not build_repo_name:
-            data['build']['repo']['name'] = project.context['project']['name']
+        data.setdefault('build', {}).setdefault('repo', {}).setdefault(
+            'name', project.context['project']['name']
+        )

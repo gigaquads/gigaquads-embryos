@@ -7,7 +7,7 @@ class DroneEmbryo(Embryo):
     # Drone Embryo
     """
 
-    project = Relationship(name='project', index=0)
+    project = Relationship(name='project/base', index=0)
 
     class context_schema(Embryo.Schema):
         """

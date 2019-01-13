@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# fetch and build repository from remote destination
+#--git_server 
+#--org_name
+#--repo_name 
+#--branch_name 
+fetch-repo \
+  $BUILD_REPO_SERVER \
+  $BUILD_REPO_ORG \
+  $BUILD_REPO_NAME \
+  $BUILD_REPO_BRANCH \
+{% if build.repo.server == 'gitlab' %}
+  --gitlab_host $BUILD_REPO_GITLAB_HOST \
+  --gitlab_token $BUILD_REPO_GITLAB_TOKEN \
+{% endif %}
+  --dest $BUILD_DEST && \
+  cd $BUILD_DEST && \
+  setup-python-project

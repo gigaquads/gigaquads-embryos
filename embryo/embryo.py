@@ -50,7 +50,6 @@ class EmbryoEmbryo(Embryo):
             #for f in files:
             #    self.fs._read_file(f)
         #self.fs.read(self)
-        import ipdb; ipdb.set_trace(); print('=' * 100)
 
     def _render_tree(self):
         tree = super()._render_tree()

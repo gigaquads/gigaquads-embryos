@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+echo ">>> Host details"
+uname -a
+
+echo ">>> Environment details"
+env

@@ -1,0 +1,46 @@
+{%- set project = project.context.project -%}
+---
+kind: pipeline
+name: default
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: docker
+  image: plugins/docker
+  environment:
+    GITLAB_TOKEN:
+      from_secret: gitlab_token
+  settings:
+    registry: registry.lib.land
+    username: 
+      from_secret: registry_username
+    password: 
+      from_secret: registry_password
+    dockerfile: "./docker_src/Dockerfile"
+    repo: registry.lib.land/notdsk/{{ project.name|dash }}
+    tag: latest
+    context: "./docker_src/"
+    build_args_from_env:
+    - 'GITLAB_TOKEN'
+
+
+- name: helm
+  image: "quay.io/ipedrazas/drone-helm"
+  environment:
+    API_SERVER:
+      from_secret: api_server
+    KUBERNETES_TOKEN:
+      from_secret: kubernetes_token
+  settings:
+    skip_tls_verify: true
+    chart: "./k8s/{{ project.name|dash }}"
+    release: "{{ project.name|dash }}-${DRONE_BRANCH}"
+    values: "image.tag=latest"#${DRONE_BRANCH}-${DRONE_COMMIT_SHA:0:7}"
+    debug: true
+    wait: true
+    namespace: "dev"
+
+...

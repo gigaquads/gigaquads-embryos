@@ -19,6 +19,17 @@
       },
       "name": "project",
       "schema_fields": []
+    },
+    {
+      "embryo": {
+        "action": "hatch",
+        "destination": "/Users/jeff/code/gigaquads-embryos",
+        "name": "embryo",
+        "timestamp": 1547255179
+      },
+      "name": "drone",
+      "origin_path": "/Users/jeff/code/gigaquads-embryos",
+      "schema_fields": []
     }
   ],
   "git-project": [

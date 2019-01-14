@@ -4,6 +4,15 @@ FROM registry.lib.land/gigaquads/base:latest
 ARG FREEZE=false
 ENV FREEZE=${FREEZE}
 
+{{ env }}
+{% if env %}
+ENV \
+{% for _env in env %}
+    {{ _env }} \
+{% endfor %}
+{% endif %}
+
+
 {% if build %}
 ARG BUILD_DEST={{ build.dest }}
 ARG BUILD_REPO_SERVER={{ build.repo.server }}

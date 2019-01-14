@@ -35,9 +35,17 @@ class DockerBaseEmbryo(Embryo):
         )
         entrypoint = fields.String(nullable=True)
         expose = fields.String(nullable=True)
+        env = fields.Dict()
 
     def pre_create(self, data):
+        import ipdb; ipdb.set_trace(); print('=' * 100)
         project = self.related['project']
         data.setdefault('build', {}).setdefault('repo', {}).setdefault(
             'name', project.context['project']['name']
         )
+
+    def on_create(self, data):
+        env_file = self.fs['.env.yml']
+        if env_file:
+            env_data = env_file[0]
+            data['env'] = env_data

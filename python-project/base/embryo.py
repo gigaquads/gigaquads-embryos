@@ -1,11 +1,13 @@
 from appyratus.schema import fields
-from embryo import Embryo
+from embryo import Embryo, Relationship
 
 
 class PythonProjectBaseEmbryo(Embryo):
     """
     An embryo for Base
     """
+
+    project = Relationship(name='project/base', index=-1)
 
     class context_schema(Embryo.Schema):
         """

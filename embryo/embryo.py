@@ -55,8 +55,10 @@ class EmbryoEmbryo(Embryo):
         tree = super()._render_tree()
         for t in tree:
             if isinstance(t, dict) and 'templates/' in t.keys():
-                t['templates/'] = ['base.html']#[k for k in self._new_files.keys()]
                 import ipdb; ipdb.set_trace(); print('=' * 100)
+                t['templates/'] = [
+                    'base.html'
+                ]    #[k for k in self._new_files.keys()]
         return tree
 
     def build_tree(self, origin_path: str) -> tuple:

@@ -4,6 +4,7 @@
     - __init__.py
   - dao/:
     - __init__.py
+    - base.py: base-dao()
   - api/:
     - __init__.py
 - manifest.yml

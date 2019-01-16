@@ -1,0 +1,5 @@
+from pybiz.dao import YamlDao
+
+class BaseDao(YamlDao):
+    def __init__(self):
+        super().__init__(id_key='name')

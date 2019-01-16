@@ -10,7 +10,7 @@ class PybizProjectCliEmbryo(Embryo):
     """
     An embryo for Cli
     """
-    project = Relationship(name='python-project/base', index=0)
+    project = Relationship(name='project/base', index=0)
 
     class context_schema(Embryo.Schema):
         """

@@ -1,5 +1,9 @@
-from pybiz.dao import YamlDao
+from pybiz.dao.dict_dao import DictDao
 
-class BaseDao(YamlDao):
+
+class BaseDao(DictDao):
     def __init__(self):
-        super().__init__(id_key='name')
+        super().__init__()
+
+    def next_id(self, data: dict):
+        return data.get('public_id', super().next_id(data))

@@ -1,5 +1,4 @@
-from appyratus.schema import fields
-from pybiz import BizObject
+from pybiz import BizObject, fields, Relationship
 
 
 class {{ biz.name|camel }}(BizObject):

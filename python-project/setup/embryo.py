@@ -138,6 +138,7 @@ class SetupEmbryo(Embryo):
         for line in requirements_text.split("\n"):
             if not line:
                 continue
+            egg = line
             if line.startswith('-e'):
                 # we're looking at a github repo dependency, so
                 # install from a github tarball.
@@ -149,10 +150,11 @@ class SetupEmbryo(Embryo):
                 if url.endswith('.git'):
                     url = url[:-4]
                 tarball_url = url.rstrip('/') + '/tarball/master#egg=' + egg
-                requirements.append(egg.strip().replace('-', '_'))
                 dependency_links.append(tarball_url)
-            else:
-                requirements.append(line.strip().replace('-', '_'))
+            # this is where it gets dicey.  requirements wants the egg with
+            # dashes as underscore
+            # TODO reference this
+            requirements.append(egg.strip().replace('-', '_'))
         if requirements:
             context['install_requires'] = requirements
         if dependency_links:

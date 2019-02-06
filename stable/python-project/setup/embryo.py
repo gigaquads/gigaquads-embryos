@@ -17,17 +17,17 @@ Project classifier mappings
 """
 
 
-class SetupEmbryo(Embryo):
+class ProjectSetupEmbryo(Embryo):
     """
-    # Setup Embryo
+    # Project Setup Embryo
     """
 
-    project = Relationship(name='project/base', index=0)
+    project = Relationship(name='project/base', index=-1)
 
     class context_schema(Embryo.Schema):
         """
         # Context Schema
-        The respective Setup schema
+        The respective Project Setup schema
         """
         project = fields.Dict()
         # relevant setup fields
@@ -41,7 +41,7 @@ class SetupEmbryo(Embryo):
         url = fields.String(nullable=True)
         license = fields.String(nullable=True)
         keywords = fields.List(fields.String(), nullable=True)
-        classifiers = fields.List(fields.String(), nullable=True)
+        classifiers = fields.List(fields.String(), default=lambda: [])
         scripts = fields.List(fields.String(), nullable=True)
         dependency_links = fields.List(fields.String(), nullable=True)
         packages = fields.String(nullable=True)
@@ -52,17 +52,12 @@ class SetupEmbryo(Embryo):
         refresh_scripts = fields.Bool(nullable=True, default=False)
         find_packages = fields.Bool(nullable=True, default=False)
 
-    def pre_create(self, context):
-        if 'classifiers' in context:
-            if not isinstance(context['classifiers'], list):
-                context['classifiers'] = [context['classifiers']]
-
     def on_create(self, context):
         #https://setuptools.readthedocs.io/en/latest/setuptools.html#configuring-setup-using-setup-cfg-files
         name = context.get('name')
         if not name:
             # XXX self.related is not available when running setup as a nested
-            # embryo.  see the related `full` embryo for implementation 
+            # embryo.  see the related `full` embryo for implementation
             name = self.related['project'].context['project']['name']
         context['name'] = StringUtils.snake(name)
         # look for readme for long description
@@ -71,8 +66,7 @@ class SetupEmbryo(Embryo):
             context['long_description'] = 'file: {}'.format(
                 ','.join(description_files)
             )
-
-        self.load_classifiers(context)
+        context['classifiers'] = self.build_classifiers(context['classifiers'])
         # scripts
         if 'scripts' not in context or context['refresh_scripts']:
             scripts = self.load_scripts(context)
@@ -176,16 +170,14 @@ class SetupEmbryo(Embryo):
         if scripts:
             context['scripts'] = scripts
 
-    def load_classifiers(self, context):
+    def build_classifiers(self, classifiers: list):
         """
         Load classifiers providing a list of keys that exist in PROJECT_CLASSIFIERS
         """
-        if 'classifiers' not in context or not context['classifiers']:
-            return
-        classifiers = []
-        for k in context['classifiers']:
+        if classifiers is None:
+            return []
+        for k in classifiers:
             classifier = PROJECT_CLASSIFIERS.get(k)
             if classifier:
                 classifiers.append(classifier)
-        if classifiers:
-            context['classifiers'] = classifiers
+        return classifiers

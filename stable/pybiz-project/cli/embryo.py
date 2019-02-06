@@ -17,6 +17,10 @@ class PybizProjectCliEmbryo(Embryo):
         The respective Cli schema
         """
         project = fields.Dict()
+        registry = fields.List(fields.String())
+
+    def pre_create(self, context):
+        pass
 
     def post_create(self, context):
         """

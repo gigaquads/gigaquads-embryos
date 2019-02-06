@@ -1,20 +1,60 @@
 #!/usr/bin/env python3
 # encoding=utf-8
 # vim: set filetype=python
+{%- set project_name = project.context.project.name -%}
 from appyratus.utils import SysUtils
 
-from {{ project.context.project.name|snake }}.api import cli
-from {{ project.context.project.name|snake }}.env import {{ project.context.project.name|camel }}Environment
+from pybiz.util import RegistryRouter
 
-env = {{ project.context.project.name|camel }}Environment()
+{% if registry %}
+from {{ project_name|snake }}.api import {{ ', '.join(registry) }}
+{% endif %}
+from {{ project_name|snake }}.env import {{ project_name|camel }}Environment
+
+env = {{ project_name|camel }}Environment()
+
+
+class {{ project_name|camel }}RegistryRouter(RegistryRouter):
+    """
+    # {{ project_name|title }} Registry Router
+    """
+{% if not registry %}
+    pass
+{% else %}
+{% if 'cli' in registry %}
+    def cli(self):
+        cli.manifest.load(path=env.manifest_filepath).process()
+        cli.start()
+        return cli
+{% endif %}
+
+{% if 'repl' in registry %}
+    def repl(self):
+        repl.manifest.load(path=env.manifest_filepath).process()
+        repl.start()
+        return repl
+{% endif %}
+
+{% if 'rpc' in registry %}
+    def rpc(self):
+        rpc.bootstrap(
+            manifest_filepath=env.manifest_filepath,
+            build_grpc=True,
+            grpc_options={'server_host': env.rpc_server_host}
+        )
+        rpc.start()
+        return rpc
+{% endif %}
+    
+{% endif %}
 
 
 def main():
     """
-    Main execution for {{ project.context.project.name|title }}
+    # Main execution for {{ project_name|title }} command-line interface
     """
-    cli.manifest.load(path=env.manifest_filepath).process()
-    cli.start()
+    router = {{ project_name|camel }}RegistryRouter()
+    router.run()
 
 
 if __name__ == "__main__":

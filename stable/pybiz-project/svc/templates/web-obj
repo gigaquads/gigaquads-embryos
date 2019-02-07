@@ -1,5 +1,5 @@
-from pybiz.api.web.falcon import FalconServiceRegistry
-from pybiz.api.web.falcon.middleware.json import JsonBodyMiddleware
+from pybiz.contrib.falcon import FalconServiceRegistry
+from pybiz.contrib.falcon.middleware.json import JsonBodyMiddleware
 
 
 class {{ project.context.project.name|camel }}WebService(FalconServiceRegistry):

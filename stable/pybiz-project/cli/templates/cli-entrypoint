@@ -1,9 +1,11 @@
+{%- set project_name = project.context.project.name -%}
 #!/usr/bin/env python3
 # encoding=utf-8
 # vim: set filetype=python
-{%- set project_name = project.context.project.name -%}
+
 from appyratus.utils import SysUtils
 
+from pybiz import Manifest
 from pybiz.util import RegistryRouter
 
 {% if registry %}
@@ -23,14 +25,16 @@ class {{ project_name|camel }}RegistryRouter(RegistryRouter):
 {% else %}
 {% if 'cli' in registry %}
     def cli(self):
-        cli.manifest.load(path=env.manifest_filepath).process()
+        manifest = Manifest(path=env.manifest_filepath)       
+        cli.bootstrap(manifest=manifest)
         cli.start()
         return cli
 {% endif %}
 
 {% if 'repl' in registry %}
     def repl(self):
-        repl.manifest.load(path=env.manifest_filepath).process()
+        manifest = Manifest(path=env.manifest_filepath)       
+        repl.bootstrap(manifest=manifest)
         repl.start()
         return repl
 {% endif %}

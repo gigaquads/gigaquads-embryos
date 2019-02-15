@@ -6,7 +6,6 @@
     - base.py: base-biz()
   - dao/:
     - __init__.py
-    - base.py: base-dao()
   - api/:
     - __init__.py
   - test/:

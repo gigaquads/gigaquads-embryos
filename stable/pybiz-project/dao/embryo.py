@@ -26,6 +26,7 @@ class DaoEmbryo(Embryo):
             {
                 'name': fields.String(),
                 'type': fields.String(nullable=True),
+                'params': fields.Nested({}),
                 'fields': fields.List(fields.Dict())
             }
         )

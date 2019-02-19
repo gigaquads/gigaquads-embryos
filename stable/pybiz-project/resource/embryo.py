@@ -38,9 +38,9 @@ class ResourceEmbryo(Embryo):
 
     def pre_create(self, context, *args, **kwargs):
         # the resource name is optional, however if
-        # provided, it will be injected to the biz, dao,
-        # and api, unless a name for them was also
-        # specified, then the provided name take precedent
+        # provided it will be injected to the biz, dao,
+        # and api- unless a name for them was also
+        # specified, then the provided name takes precedent
         resource_name = context['resource'].get('name')
         if resource_name:
             for group in ('biz', 'dao', 'api'):

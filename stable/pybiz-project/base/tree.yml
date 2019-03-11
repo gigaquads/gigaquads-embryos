@@ -3,7 +3,6 @@
 - {{ project.context.project.name|snake }}/:
   - biz/:
     - __init__.py
-    - base.py: base-biz()
   - dao/:
     - __init__.py
   - api/:

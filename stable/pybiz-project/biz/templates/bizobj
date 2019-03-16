@@ -1,9 +1,7 @@
-from pybiz import fields, Relationship
-
-from .base import BaseBizObject
+from pybiz import BizObject, Relationship, fields
 
 
-class {{ biz.name|camel }}(BaseBizObject):
+class {{ biz.name|camel }}(BizObject):
     """
     # {{ biz.name|camel }}
     The {{ biz.name|title }} business object.

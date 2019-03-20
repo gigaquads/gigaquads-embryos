@@ -2,7 +2,7 @@
 - {{ project.context.project.name|snake }}/:
   - api/:
     - {{ api.name|snake }}_api.py: apiobj()
-    guard/:
+    - guards/:
       - {{ api.name|snake }}_guard.py: apiguard()
 - tests/:
   - api/:

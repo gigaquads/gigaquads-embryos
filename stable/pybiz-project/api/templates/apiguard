@@ -2,9 +2,9 @@ from . import cli
 from pybiz.api.middleware import Guard
 
 
-class {{ api.name|camel}}Exists():
+class {{ api.name|camel }}Exists():
     """
-    # {{ api.name|Title }} Guard
+    # {{ api.name|title }} Guard
     """
     def execute(self, context, {{ api.name|snake }}):
         if not {{ api.name|snake }}:

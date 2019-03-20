@@ -1,9 +1,28 @@
+
+{% set api_method = api.name|snake %}
+{% set api_title = api.name|title %}
+{% set api_class = api.name|camel %}
+{% set api_cli_method = api.name|dash %}
+{% set project_name = project.context.project.name|snake %}
 from . import cli
 
+from {{ project_name }}.biz.{{ api_method }} import {{ api_class }}
+from .guards import {{ api_method }}_exists
 
-@cli()
-def create_{{ api.name|snake }}():
+
+@cli(name='create-{{ api_cli_method }}')
+def user_creates_{{ api_method }}():
     """
-    # Create {{ api.name|camel }}
+    # Create {{ api_class }}
     """
-    pass
+    {{ api_method }} = {{ api_class }}().create()
+    return {{ api_method }}
+
+
+@cli(name='get-{{ api_cli_method }}', guards={{ api_method }}_exists)
+def user_gets_{{ api_method }}({{ api_method }}: {{ api_class }}):
+    """
+    # Get {{ api_class }}
+    """
+    return {{ api_method }}
+

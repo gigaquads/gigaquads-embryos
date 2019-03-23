@@ -23,21 +23,6 @@ class {{ project_name|camel }}RegistryRouter(RegistryRouter):
 {% if not registry %}
     pass
 {% else %}
-{% if 'cli' in registry %}
-    def cli(self):
-        manifest = Manifest(path=env.manifest_filepath)       
-        cli.bootstrap(manifest=manifest)
-        cli.start()
-        return cli
-{% endif %}
-
-{% if 'repl' in registry %}
-    def repl(self):
-        manifest = Manifest(path=env.manifest_filepath)       
-        repl.bootstrap(manifest=manifest)
-        repl.start()
-        return repl
-{% endif %}
 
 {% if 'rpc' in registry %}
     def rpc(self):
@@ -57,7 +42,17 @@ def main():
     """
     # Main execution for {{ project_name|title }} command-line interface
     """
-    router = {{ project_name|camel }}RegistryRouter()
+    router = {{ project_name|camel }}RegistryRouter(
+        manifest=env.manifest_filepath,
+        registries={
+{% if 'cli' in registry %}
+            'cli': cli,
+{% endif %}
+{% if 'repl' in registry %}
+            'repl': repl,
+{% endif %}
+        }
+    )
     router.run()
 
 

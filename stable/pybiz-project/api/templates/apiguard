@@ -1,8 +1,7 @@
-from . import cli
 from pybiz.api.middleware import Guard
 
 
-class {{ api.name|camel }}Exists():
+class {{ api.name|camel }}Exists(Guard):
     """
     # {{ api.name|title }} Guard
     """

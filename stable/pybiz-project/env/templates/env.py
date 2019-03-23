@@ -7,9 +7,9 @@ class {{ project.context.project.name|camel }}Environment(Environment):
 
     @property
     def data_path(self):
-        return self.{{ project.context.project.name|snake|upper }}_DATA_PATH
+        return self['{{ project.context.project.name|snake|upper }}_DATA_PATH']
 
     @property
     def manifest_filepath(self):
-        return self.{{ project.context.project.name|snake|upper }}_MANIFEST_FILEPATH
+        return self['{{ project.context.project.name|snake|upper }}_MANIFEST_FILEPATH']
 

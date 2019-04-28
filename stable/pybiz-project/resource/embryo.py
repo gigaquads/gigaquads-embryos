@@ -42,7 +42,7 @@ class ResourceEmbryo(Embryo):
         dao = fields.Nested(
             {
                 'name': fields.String(),
-                'type': fields.String(default=lambda: DAO_TYPES['filesystem']),
+                'type': fields.String(default=lambda: DAO_TYPES['python']),
                 'params': fields.Dict()
             }
         )
@@ -53,7 +53,6 @@ class ResourceEmbryo(Embryo):
         # provided it will be injected to the biz, dao,
         # and api- unless a name for them was also
         # specified, then the provided name takes precedent
-        print('resource', context)
         resource_name = context['resource'].get('name')
         resource_component = context['resource'].get('component')
         dao_type = (context['dao'] or {}).get('type')
@@ -85,7 +84,7 @@ class ResourceEmbryo(Embryo):
             if not dao_name and bootstraps:
                 dao_name = bootstraps[0]['dao']
             if not dao_name:
-                dao_name = DAO_TYPES['filesystem']
+                dao_name = DAO_TYPES['python']
             dao_params = context['dao'].get('params')
             found_bindings = [b for b in bindings if b['biz'] == biz_name]
             binding = found_bindings[0] if found_bindings else None

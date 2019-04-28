@@ -1,0 +1,15 @@
+{
+  "embryo": [
+    {
+      "embryo": {
+        "action": "hatch",
+        "destination": "/Users/jeff/code/gigaquads-embryos/stable/pybiz-project/session",
+        "name": "embryo",
+        "timestamp": 1553373303
+      },
+      "name": "session",
+      "origin_path": null,
+      "schema_fields": null
+    }
+  ]
+}

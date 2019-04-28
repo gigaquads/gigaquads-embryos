@@ -1,0 +1,11 @@
+from pybiz.api.middleware import Guard
+
+
+class {{ api.name|camel }}Exists(Guard):
+    """
+    # {{ api.name|title }} Guard
+    """
+    def execute(self, context, {{ api.name|snake }}):
+        if not {{ api.name|snake }}:
+            return False
+        return True

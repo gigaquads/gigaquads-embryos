@@ -39,7 +39,7 @@ class EmbryoEmbryo(Embryo):
         if isinstance(schema_fields, dict):
             schema_fields = [schema_fields]
         context['schema_fields'] = schema_fields
-        if 'origin_path' in context:
+        if 'origin_path' in context and context['origin_path']:
             tree, files = self.build_tree(context['origin_path'])
             self._new_tree = tree
             self._new_files = files

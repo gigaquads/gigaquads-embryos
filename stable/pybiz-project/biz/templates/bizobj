@@ -1,9 +1,12 @@
-from pybiz import fields, Relationship
+{% set biz_class = ("components." + biz.component) if biz.component else 'BizObject' %}
+from pybiz import BizObject, Relationship, fields
 
-from .base import BaseBizObject
+{% if biz.component %}
+from pybiz.biz import components
+{% endif %}
 
 
-class {{ biz.name|camel }}(BaseBizObject):
+class {{ biz.name|camel }}({{ biz_class }}):
     """
     # {{ biz.name|camel }}
     The {{ biz.name|title }} business object.

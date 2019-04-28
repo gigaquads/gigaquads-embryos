@@ -25,8 +25,18 @@ class ResourceEmbryo(Embryo):
         # Context Schema
         The respective Resource schema
         """
-        resource = fields.Nested({'name': fields.String()})
-        biz = fields.Nested({'name': fields.String()})
+        resource = fields.Nested(
+            {
+                'name': fields.String(),
+                'component': fields.String()
+            }
+        )
+        biz = fields.Nested(
+            {
+                'name': fields.String(),
+                'component': fields.String()
+            }
+        )
         dao = fields.Nested(
             {
                 'name': fields.String(),
@@ -41,28 +51,34 @@ class ResourceEmbryo(Embryo):
         # provided it will be injected to the biz, dao,
         # and api- unless a name for them was also
         # specified, then the provided name takes precedent
+        print('resource', context)
         resource_name = context['resource'].get('name')
+        resource_component = context['resource'].get('component')
         if resource_name:
             for group in ('biz', 'dao', 'api'):
-                group_context = {'name': resource_name}
+                group_context = {
+                    'name': resource_name,
+                    'component': resource_component
+                }
                 if not self.context.get(group):
                     self.context[group] = {}
                 self.context[group].update(group_context)
 
     def on_create(self, context, *args, **kwargs):
-        manifest = self.fs['/manifest.yml'][0]
-        bindings = manifest.setdefault('bindings', [])
-        biz_name = StringUtils.camel(context['biz']['name'])
-        #dao_name = StringUtils.camel('{}Dao'.format(context['dao']['name']))
-        dao_name = context['dao']['type']
-        dao_params = context['dao'].get('params')
-        found_bindings = [b for b in bindings if b['biz'] == biz_name]
-        binding = found_bindings[0] if found_bindings else None
-        new_binding = self.build_binding(biz_name, dao_name, dao_params)
-        if not binding:
-            bindings.append(new_binding)
-        else:
-            binding.update(new_binding)
+        if self.fs['/manifest.yml']:
+            manifest = self.fs['/manifest.yml'][0]
+            bindings = manifest.setdefault('bindings', [])
+            biz_name = StringUtils.camel(context['biz']['name'])
+            #dao_name = StringUtils.camel('{}Dao'.format(context['dao']['name']))
+            dao_name = context['dao']['type']
+            dao_params = context['dao'].get('params')
+            found_bindings = [b for b in bindings if b['biz'] == biz_name]
+            binding = found_bindings[0] if found_bindings else None
+            new_binding = self.build_binding(biz_name, dao_name, dao_params)
+            if not binding:
+                bindings.append(new_binding)
+            else:
+                binding.update(new_binding)
 
     @classmethod
     def build_binding(cls, biz, dao, params=None):

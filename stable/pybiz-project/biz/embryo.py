@@ -25,7 +25,8 @@ class BizEmbryo(Embryo):
         biz = fields.Nested(
             {
                 'name': fields.String(),
-                'fields': fields.List(fields.Dict())
+                'fields': fields.List(fields.Dict()),
+                'component': fields.String(),
             }
         )
         project = fields.Dict()

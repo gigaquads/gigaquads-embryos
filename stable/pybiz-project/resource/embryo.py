@@ -4,6 +4,8 @@ from embryo import Embryo, Relationship
 
 DAO_TYPES = {
     'filesystem': 'pybiz.dao.FilesystemDao',
+    'cache': 'pybiz.dao.CacheDao',
+    'python': 'pybiz.dao.PythonDao',
 }
 
 
@@ -54,10 +56,13 @@ class ResourceEmbryo(Embryo):
         print('resource', context)
         resource_name = context['resource'].get('name')
         resource_component = context['resource'].get('component')
+        dao_type = (context['dao'] or {}).get('type')
+
         if resource_name:
             for group in ('biz', 'dao', 'api'):
                 group_context = {
                     'name': resource_name,
+                    'type': dao_type,
                     'component': resource_component
                 }
                 if not self.context.get(group):
@@ -69,8 +74,18 @@ class ResourceEmbryo(Embryo):
             manifest = self.fs['/manifest.yml'][0]
             bindings = manifest.setdefault('bindings', [])
             biz_name = StringUtils.camel(context['biz']['name'])
-            #dao_name = StringUtils.camel('{}Dao'.format(context['dao']['name']))
+            # dao bootstraps and types.  when a type is not specified, check
+            # the bootstraps for an existing dao configuration, and use that as
+            # the dao type
+            dao_name = StringUtils.camel(
+                '{}Dao'.format(context['dao']['name'])
+            )
+            bootstraps = manifest.setdefault('bootstraps', [])
             dao_name = context['dao']['type']
+            if not dao_name and bootstraps:
+                dao_name = bootstraps[0]['dao']
+            if not dao_name:
+                dao_name = DAO_TYPES['filesystem']
             dao_params = context['dao'].get('params')
             found_bindings = [b for b in bindings if b['biz'] == biz_name]
             binding = found_bindings[0] if found_bindings else None

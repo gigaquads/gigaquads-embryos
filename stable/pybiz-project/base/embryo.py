@@ -21,3 +21,4 @@ class PybizProjectBaseEmbryo(Embryo):
         project = fields.Nested({
             'name': fields.String(),
         })
+        bootstraps = fields.List(fields.String(), nullable=True)

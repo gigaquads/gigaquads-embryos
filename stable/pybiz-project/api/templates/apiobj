@@ -29,7 +29,7 @@ def user_gets_{{ api_method }}({{ api_method }}: {{ api_class }}, {{ session_arg
 
 
 @cli(name='get-{{ api_cli_method }}s')
-def user_gets_{{ api_method }}s({{ api_method }}: {{ api_class }}, {{ session_arg }}):
+def user_gets_{{ api_method }}s({{ session_arg }}):
     """
     # Get {{ api_class }}s
     """

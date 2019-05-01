@@ -1,0 +1,4 @@
+---
+- embryo: python-project/base()
+- embryo: python-project/setup()
+...

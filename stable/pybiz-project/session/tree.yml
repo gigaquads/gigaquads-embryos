@@ -1,0 +1,4 @@
+---
+- embryo: pybiz-project/resource(resource.session)
+- embryo: pybiz-project/resource(resource.user)
+...

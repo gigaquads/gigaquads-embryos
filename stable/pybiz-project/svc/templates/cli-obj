@@ -1,0 +1,5 @@
+from pybiz.api import CliRegistry
+
+
+class {{ project.context.project.name|camel }}CliService(CliRegistry):
+    pass

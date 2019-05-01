@@ -1,0 +1,14 @@
+{
+  "embryo": [
+    {
+      "embryo": {
+        "action": "hatch",
+        "destination": "/Users/jeff/code/gigaquads-embryos/helm",
+        "name": "embryo",
+        "timestamp": 1544393440
+      },
+      "name": "chart",
+      "schema_fields": []
+    }
+  ]
+}

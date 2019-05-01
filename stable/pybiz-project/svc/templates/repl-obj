@@ -1,0 +1,5 @@
+from pybiz.api import ReplRegistry
+
+
+class {{ project.context.project.name|camel }}ReplService(ReplRegistry):
+    pass

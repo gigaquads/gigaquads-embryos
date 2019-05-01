@@ -1,0 +1,14 @@
+from appyratus.utils import StringUtils
+from pybiz import BizObject, fields
+
+
+class BaseBizObject(BizObject):
+    """
+    # Base Biz Object
+
+    # Fields
+    - `public_id`,
+    """
+    public_id = fields.Field(
+        post_process=lambda value, data, context: (StringUtils.snake(value), None)
+    )

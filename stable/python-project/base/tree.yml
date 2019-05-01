@@ -1,0 +1,7 @@
+---
+- README.md
+- requirements.txt
+- {{ project.context.project.name|snake }}/:
+  - __init__.py
+- tests/:
+...

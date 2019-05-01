@@ -1,0 +1,9 @@
+---
+- docker_src/:
+  - Dockerfile
+  - scripts/:
+    - build.sh
+    - entrypoint
+  - 
+
+...

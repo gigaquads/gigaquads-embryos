@@ -1,0 +1,5 @@
+{% set project_name = project.context.project.name|snake|upper %}
+{% set data_path = embryo.destination ~ "/data" %}
+{% set manifest_filepath= embryo.destination ~ "/manifest.yml" %}
+{{ project_name }}_DATA_PATH={{ data_path }}
+{{ project_name }}_MANIFEST_FILEPATH={{ manifest_filepath }}

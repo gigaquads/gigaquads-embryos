@@ -9,5 +9,5 @@ Name | Purpose | Status
 [embryo](embryo) | Create new embryos | Active
 [git-project](git-project) | Bootstrap your project with git-based project essentials | Active
 [pybiz-project](pybiz-project) | [Pybiz](/gigaquads/pybiz) project | Active
-[python-project](python-project) | Basic necessities for to get yourself a python project | Active / Upgrade
+[python-project](python-project) | Basic necessities for to get yourself a python project | Active
 [react-project](react-project) | React project | Refactor

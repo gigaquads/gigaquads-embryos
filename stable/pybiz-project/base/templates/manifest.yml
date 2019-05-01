@@ -1,0 +1,28 @@
+# PyBiz Manifest
+# ------------------------------------------------------------
+
+# The `package` field declares where the API functions, BizObject
+# classes and Dao classes are to be found and loaded.
+package: {{ project.context.project.name|snake }}
+
+# Bootstraps declare what global settings are applied to the Dao `bindings`
+bootstraps:
+{% if bootstraps and 'cache' in bootstraps %}
+- dao: pybiz.dao.CacheDao
+  params:
+    back:
+      dao: pybiz.dao.FilesystemDao
+      params:
+        root: ${{ project.context.project.name|upper }}_DATA_PATH
+    front:
+      dao: pybiz.dao.PythonDao
+    prefetch: true
+{% else %}
+  []
+{% endif %}
+
+
+# The `bindings` section declares which Dao class is to be
+# utilized by each BizObject class as well as the
+# Schema class (optional).
+bindings: []

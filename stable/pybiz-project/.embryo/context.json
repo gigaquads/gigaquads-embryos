@@ -1,0 +1,24 @@
+{
+  "embryo": [
+    {
+      "embryo": {
+        "action": "hatch",
+        "destination": "/Users/jeffdoss/jump-ship/code/pybiz/pybiz/embryos/pybiz-project",
+        "name": "embryo",
+        "timestamp": 1537550626
+      },
+      "name": "uwsgi",
+      "schema_fields": []
+    },
+    {
+      "embryo": {
+        "action": "hatch",
+        "destination": "/Users/jeff/code/gigaquads-embryos/pybiz-project",
+        "name": "embryo",
+        "timestamp": 1542406352
+      },
+      "name": "env",
+      "schema_fields": []
+    }
+  ]
+}

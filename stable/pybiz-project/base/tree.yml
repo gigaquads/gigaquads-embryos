@@ -1,0 +1,16 @@
+---
+- manifest.yml
+- {{ project.context.project.name|snake }}/:
+  - biz/:
+    - __init__.py
+  - dao/:
+    - __init__.py
+  - api/:
+    - __init__.py
+    - guards/:
+      - __init__.py
+  - test/:
+    - __init__.py
+    - fixtures/:
+      - __init__.py
+...

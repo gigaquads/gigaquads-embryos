@@ -1,0 +1,9 @@
+from pybiz.contrib.falcon import FalconServiceRegistry
+
+
+class {{ project.context.project.name|camel }}WebService(FalconServiceRegistry):
+
+    @property
+    def middleware(self):
+        return []
+

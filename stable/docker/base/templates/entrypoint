@@ -1,0 +1,3 @@
+{% if is_service %}
+uwsgi --ini uwsgi/dev.ini
+{% endif %}

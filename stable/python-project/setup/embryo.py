@@ -66,6 +66,7 @@ class ProjectSetupEmbryo(Embryo):
             context['long_description'] = 'file: {}'.format(
                 ','.join(description_files)
             )
+            context['long_description_content_type'] = 'text/markdown'
         context['classifiers'] = self.build_classifiers(context['classifiers'])
         # scripts
         if 'scripts' not in context or context['refresh_scripts']:

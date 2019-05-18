@@ -13,7 +13,7 @@ bootstraps:
     back:
       dao: pybiz.dao.FilesystemDao
       params:
-        root: ${{ project.context.project.name|upper }}_DATA_PATH
+        root: ${{ project.context.project.name|snake|upper }}_DATA_PATH
     front:
       dao: pybiz.dao.PythonDao
     prefetch: true
